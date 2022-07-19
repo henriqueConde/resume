@@ -1,8 +1,8 @@
 import styled from '@emotion/styled/macro'
-import { StyledSeparator } from '../Components/StyledSeparator/StyledSeparator';
+import { StyledSeparator } from './StyledSeparator';
 
 interface SecondaryTitle {
-    text: String;
+  title: String;
 }
 
 const Wrapper = styled.div`
@@ -19,10 +19,10 @@ const Title = styled.h3`
     position: relative;
 `;
 
-export const ThemeHeading = ({ text }: SecondaryTitle) => {
+export const ThemeHeading = ({ title }: SecondaryTitle) => {
   return (
       <Wrapper>
-        <Title>{text.toLocaleUpperCase()}</Title>
+        <Title>{title.toLocaleUpperCase()}</Title>
         <StyledSeparator />
       </Wrapper>
   )

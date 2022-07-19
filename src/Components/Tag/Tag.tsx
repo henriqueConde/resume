@@ -2,28 +2,30 @@ import styled from '@emotion/styled/macro';
 import { ColorsEnum } from '../../Model/ColorsEnum';
 import { BodyBold } from '../../Utils/Typography';
 
-interface SkillProps {
+interface TagProps {
     name: string;
-    level: string;
+    color: string;
 }
 
-const Wrapper = styled.div<{level: string}>`
-    width: 12rem;
+const Wrapper = styled.div<{color: string}>`
     border-radius: 16px;
     margin-top: 20px;
     padding: 2px 13px;
     color: black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 
-    ${({ level }) =>
-        level &&
+    ${({ color }) =>
+        color &&
         `
-           background-color: ${ColorsEnum[level as keyof typeof ColorsEnum]};
+           background-color: ${ColorsEnum[color as keyof typeof ColorsEnum]};
         `}
 `;
 
-export const Skill = ({name, level}: SkillProps) => {
+export const Tag = ({name, color}: TagProps) => {
   return(
-    <Wrapper level={level}>
+    <Wrapper color={color}>
       <BodyBold>{name.toUpperCase()}</BodyBold>
     </Wrapper>
   )

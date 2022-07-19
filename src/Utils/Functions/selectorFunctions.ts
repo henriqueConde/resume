@@ -4,7 +4,11 @@ import { ISocialLink } from "../../Model/ISocialLink";
 import { IInitialState } from "../../Model/IInitalState";
 import { ILangState } from "../../Model/ILangState";
 import { IEducation } from "../../Model/IEducation";
-import { IFooterBoxes } from "../../Model/IFooterBoxes";
+import { IContact } from "../../Model/IContact";
+import { ILocation } from "../../Model/ILocation";
+import { ISocial } from "../../Model/ISocial";
+
+type FooterInfo = [IContact, ILocation, ISocial];
 
 export const getCurrentLang = (): string => INITIAL_STATE.currentLang;
 
@@ -25,7 +29,13 @@ export const getEducationState = (): IEducation => {
 
 export const getSocialLinks = (): ISocialLink[] => INITIAL_STATE.socialLinks;
 
-export const getFooterBoxes = (): IFooterBoxes[] => {
+
+
+
+export const getFooterContent = (): FooterInfo => {
     const currentLang = getCurrentLang();
-    return (INITIAL_STATE[currentLang as keyof IInitialState] as ILangState).footerBoxes;
+    const contact = (INITIAL_STATE[currentLang as keyof IInitialState] as ILangState).contact;
+    const location = (INITIAL_STATE[currentLang as keyof IInitialState] as ILangState).location;
+    const social = (INITIAL_STATE[currentLang as keyof IInitialState] as ILangState).social;
+    return [contact, location, social];
 }

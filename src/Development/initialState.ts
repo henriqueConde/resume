@@ -34,18 +34,17 @@ export const INITIAL_STATE: IInitialState = {
                 },
             ]
         },
-        footerBoxes: [
-            {
-                title: 'location',
-                location: 'Porto, Portuga'
-            },
-            {
-                title: 'contact',
-                email: 'henriquepenaconde@gmail.com',
-                phone: '+351 936 532 632'
-            },
-            {
-                title: 'social',
+        location: {
+            title: 'location',
+            location: 'Porto, Portuga'
+        },
+        contact: {
+            title: 'contact',
+            email: 'henriquepenaconde@gmail.com',
+            phone: '+351 936 532 632'
+        },
+        social: {
+            title: 'social',
                 socialLinks: [
                     {
                         url: 'https://www.linkedin.com/in/henrique-conde/',
@@ -56,8 +55,7 @@ export const INITIAL_STATE: IInitialState = {
                         text: 'GITHUB/henriqueConde'
                     }
                 ],
-            },
-        ],
+        },
         workExperience: [
             {
                 companyName: 'Farfetch',

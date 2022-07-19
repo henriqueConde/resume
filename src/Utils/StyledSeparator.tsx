@@ -1,5 +1,5 @@
 import styled from '@emotion/styled/macro'
-import { MainSeparator, SubSeparator } from '../../Utils/Separators';
+import { MainSeparator, SubSeparator } from './Separators';
 
 const WrapperSeparator = styled.div`
     display: flex;

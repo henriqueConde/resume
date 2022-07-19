@@ -1,5 +1,10 @@
 import styled from '@emotion/styled/macro'
-import { ISocialLink } from '../../Model/ISocialLink'
+
+interface ListItemProps {
+  text: string;
+  url: string;
+  icon?: string;
+}
 
 const Wrapper = styled.div`
   display: grid;
@@ -18,7 +23,7 @@ const Button = styled.button`
   font-size: 16px;
 `;
 
-export const Social = ({ text, url, icon }: ISocialLink) => {
+export const ListItem = ({ text, url, icon }: ListItemProps) => {
   return (
     <Wrapper>
       {icon ? <Icon src={icon} alt={text} /> : <div></div>}
