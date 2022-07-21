@@ -12,9 +12,8 @@ const Wrapper = styled.div<{color: string}>`
     margin-top: 20px;
     padding: 2px 13px;
     color: black;
-    display: flex;
-    flex-direction: column;
     text-align: center;
+    display: inline;
 
     ${({ color }) =>
         color &&

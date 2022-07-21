@@ -12,6 +12,7 @@ export interface ILangState {
     contact: IContact;
     education: IEducation;
     workExperience: IWorkExperience[];
+    languages: string;
     links: string;
     location: ILocation;
     personalInfo: IPersonalInfo;

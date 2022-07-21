@@ -21,3 +21,9 @@ export const MainHeading = styled.h1`
     font-size: 2.6rem;
     text-align: center;
 `;
+
+export const Link = styled.a`
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+`;

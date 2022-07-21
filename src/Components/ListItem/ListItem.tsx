@@ -1,9 +1,11 @@
 import styled from '@emotion/styled/macro'
+import { Link } from '../../Utils/Typography';
 
 interface ListItemProps {
   text: string;
   url: string;
   icon?: string;
+  onClick?: Function;
 }
 
 const Wrapper = styled.div`
@@ -18,20 +20,13 @@ const Icon = styled.img`
   width: 20px;
 `;
 
-const Button = styled.button`
-  border: none;
-  font-size: 16px;
-`;
-
 export const ListItem = ({ text, url, icon }: ListItemProps) => {
   return (
     <Wrapper>
       {icon ? <Icon src={icon} alt={text} /> : <div></div>}
-      <Button>
-        <a href={url} >
+        <Link href={url} >
           {text}
-        </a>
-      </Button>
+        </Link>
     </Wrapper>
   )
 }

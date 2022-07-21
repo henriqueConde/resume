@@ -1,7 +1,7 @@
 import styled from "@emotion/styled/macro"
 import { getFooterContent } from "../../Utils/Functions/selectorFunctions"
 import { MainSeparator } from "../../Utils/Separators"
-import { Body } from "../../Utils/Typography";
+import { Body, Link } from "../../Utils/Typography";
 import { TitleBox } from "../TitleBox/TitleBox"
 
 const TitleBoxesWrapper = styled.div`
@@ -27,17 +27,17 @@ export const Footer = () => {
           </div>
           <div>
             <TitleBox text={contact.title} />
-            <BodyCentered>{contact.email}</BodyCentered>
-            <BodyCentered>{contact.phone}</BodyCentered>
+            <BodyCentered><Link href={`mailto:${contact.email}`}>{contact.email}</Link></BodyCentered>
+            <BodyCentered><Link href={`tel:${contact.phone}`}>{contact.phone}</Link></BodyCentered>
           </div>
           <div>
             <TitleBox text={social.title} />
             {social.socialLinks.map(link => {
               return (
-              <BodyCentered>
-                <a href={link.url}>
+              <BodyCentered key={link.text}>
+                <Link href={link.url}>
                   {link.text}
-                </a>
+                </Link>
               </BodyCentered>
               )
             })}
