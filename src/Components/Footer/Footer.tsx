@@ -1,5 +1,7 @@
 import styled from "@emotion/styled/macro"
-import { getFooterContent } from "../../Utils/Functions/selectorFunctions"
+import { IContact } from "../../Model/IContact";
+import { ILocation } from "../../Model/ILocation";
+import { ISocial } from "../../Model/ISocial";
 import { MainSeparator } from "../../Utils/Separators"
 import { Body, Link } from "../../Utils/Typography";
 import { TitleBox } from "../TitleBox/TitleBox"
@@ -15,8 +17,13 @@ const BodyCentered = styled(Body)`
   text-align: center;
 `;
 
-export const Footer = () => {
-  const [contact, location, social] = getFooterContent();
+interface FooterProps {
+  contact: IContact;
+  location: ILocation;
+  social: ISocial;
+}
+
+export const Footer = ({ contact, location, social }: FooterProps) => {
   return (
     <footer>
         <MainSeparator />

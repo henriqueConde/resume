@@ -5,11 +5,11 @@ import { ListItem } from './Components/ListItem/ListItem';
 import { Tag } from './Components/Tag/Tag';
 import { InfoCard } from './Components/InfoCard/InfoCard';
 import { SkillTypesEnum } from './Model/SkillTypesEnum';
-import { getCurrentLangState, getSocialLinks } from './Utils/Functions/selectorFunctions';
+import { getCurrentLangState } from './Utils/Functions/selectorFunctions';
 import { Body, BodyBold } from './Utils/Typography';
 import { TitleHero } from './Components/TitleHero/TitleHero';
 import { MainSeparator } from './Utils/Separators';
-import React, { useRef } from 'react';
+import React from 'react';
 import { INITIAL_STATE } from './Development/initialState';
 import { LangMenu } from './Components/LangMenu/LangMenu';
 
@@ -69,6 +69,8 @@ function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [curLang, setCurLang] = React.useState<string>('');
 
+  const { socialLinks, availableLangs } = INITIAL_STATE;
+
   const {
     aboutMe, 
     bio,
@@ -79,41 +81,25 @@ function App() {
     technicalSkills,
     workExperience,
     workExperienceText,
+    personalInfo,
+    contact,
+    location,
+    social
   } = getCurrentLangState();
 
-  const socialLinks = getSocialLinks();
-
-  const langLiRefs = useRef([] as any);
-  langLiRefs.current = [];
-
-  const addToArr = (el: any) => {
-    if(el && !langLiRefs.current.includes(el)) {
-      langLiRefs.current.push(el);
-    }
-  }
-
   const handleClick = (event: any) => {
-    langLiRefs.current.forEach((currentRef: any) => {
-      const refText = currentRef.innerText;
-      const refDataAttr = currentRef.getAttribute('data-lang')
-        if(curLang !== refDataAttr) {
-          const targetParentText =  
-          event.target.innerText !== '' 
-          ? event.target.innerText 
-          : event.target.parentNode.innerText;
-        if(targetParentText && refText === targetParentText) {
-          setCurLang(refDataAttr);
-          INITIAL_STATE.currentLang = refDataAttr;
-        }
-      }
-    })
+    INITIAL_STATE.currentLang = event.target.value;
+    setCurLang(event.target.value);
   }
 
   return (
     <GlobalWrapper>
-      <LangMenu onClick={handleClick} refs={addToArr}/>
+      <LangMenu 
+      onChange={handleClick} 
+      availableLangs={availableLangs} 
+      />
       <Header>
-        <TitleHero />
+        <TitleHero {...personalInfo}/>
       </Header>
       <Main>
         <ContentBox title={links}>
@@ -172,7 +158,7 @@ function App() {
           </ContentBox>
         </WorkExperiencesWrapper>
       </Main>
-      <Footer />
+      <Footer contact={contact} location={location} social={social}/>
     </GlobalWrapper>
   );
 }

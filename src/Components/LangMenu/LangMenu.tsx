@@ -1,15 +1,13 @@
-import React, { MouseEventHandler } from 'react'
 import styled from '@emotion/styled/macro'
-import { Body } from '../../Utils/Typography'
-import { getAvailableLangs, getCurrentLangState } from '../../Utils/Functions/selectorFunctions'
 import { ColorsEnum } from '../../Model/ColorsEnum';
+import { IAvailableLanguage } from '../../Model/IAvailableLanguage';
 
 interface LangMenuProps {
-  onClick: MouseEventHandler<HTMLLIElement>;
-  refs: (el: any) => void;
+  onChange: any;
+  availableLangs: IAvailableLanguage[];
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.select`
   position: absolute;
   right: 30px;
   top: -16px;
@@ -18,64 +16,32 @@ const Wrapper = styled.div`
   border-radius: 3px;
   width: 120px;
   color: white;
-
-  p {
-    padding: 10px;
-    cursor: default;
-    text-align: center;
-  }
-
-  ul {
-    padding: 0px;
-    margin: 0px;
-  }
+  padding: 10px;
+  text-align-last: center;
+  appearance: none;
+  cursor: pointer;
 `;
 
-const StyledLi = styled.li`
+const StyledOption = styled.option`
   list-style: none;
   width: 100%;
   margin: 0px;
   padding: 5px 0px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
 
   &:hover {
     background-color: ${ColorsEnum.blueBgLight};
-
-  }
-
-  button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: white;
   }
 `;
 
-export const LangMenu = ({onClick, refs}: LangMenuProps) => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  
-  const handleDisplayMenu = () => setIsMenuOpen(true);
-  const handleHideMenu = () => setIsMenuOpen(false);
-
-  const { languages } = getCurrentLangState();
-
-  const availableLangs = getAvailableLangs();
-
+export const LangMenu = ({onChange, availableLangs}: LangMenuProps) => {
+ 
   return (
-    <Wrapper onMouseEnter={handleDisplayMenu} onMouseLeave={handleHideMenu}>
-      <Body>{languages}</Body>
-      {isMenuOpen && <ul>
+    <Wrapper onChange={onChange}>
         {availableLangs.map(lang => {
-          return (
-            <StyledLi onClick={onClick} key={lang.lang} ref={refs} data-lang={lang.lang}>
-              <button>{lang.flagImg}</button>
-            </StyledLi>
-            )
-        })}
-      </ul>}
-      
+            return (
+              <StyledOption value={lang.lang}>{lang.flagImg}</StyledOption>
+              )
+          })}
     </Wrapper>
   )
 }

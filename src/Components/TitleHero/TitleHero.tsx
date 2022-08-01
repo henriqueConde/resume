@@ -1,7 +1,7 @@
 import styled from '@emotion/styled/macro'
 import { TitleBox } from '../TitleBox/TitleBox'
-import { getStatePersonalInfo } from '../../Utils/Functions/selectorFunctions'
 import { MainHeading } from '../../Utils/Typography';
+import { IPersonalInfo } from '../../Model/IPersonalInfo';
 
 const Wrapper = styled.div`
   border: 2px solid;
@@ -13,8 +13,7 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-export const TitleHero = () => {
-  const { firstName, lastName, profession } = getStatePersonalInfo();
+export const TitleHero = ({firstName, lastName, profession}: IPersonalInfo) => {
   return (
     <Wrapper>
         <MainHeading>{firstName} {lastName}</MainHeading>
